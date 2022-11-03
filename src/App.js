@@ -7,10 +7,11 @@ import {
 } from 'react-router-dom';
 
 
-import { Navbar } from './app/Navbar'
+import  Navbar  from './app/Navbar'
 import PostsList from './features/posts/PostsList';
 import AddPostForm from './features/posts/AddPostsForm';
-
+import SinglePostPage from './features/posts/SinglePostPage';
+import EditPostComponent from './features/posts/EditPostComponent';
 
 function App() {
     return (
@@ -29,6 +30,8 @@ function App() {
 
                         )}
                     />
+                    <Route exact path = "/editPost/:postId" component = {EditPostComponent} />
+                    <Route exact path = "/posts/:postId" component = {SinglePostPage} />
                     <Redirect to="/" />
                 </Switch>
             </div>
