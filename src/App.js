@@ -6,7 +6,11 @@ import {
     Redirect,
 } from 'react-router-dom';
 
+
 import { Navbar } from './app/Navbar'
+import PostsList from './features/posts/PostsList';
+import AddPostForm from './features/posts/AddPostsForm';
+
 
 function App() {
     return (
@@ -19,8 +23,10 @@ function App() {
                         path="/"
                         render={() => (
                             <section>
-                                <h2>Welcome to the Redux Essentials example app!</h2>
+                                <AddPostForm/>
+                                <PostsList/>                            
                             </section>
+
                         )}
                     />
                     <Redirect to="/" />
