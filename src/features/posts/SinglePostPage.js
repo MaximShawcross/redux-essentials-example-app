@@ -1,15 +1,16 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+
+import { setById } from "./postsSlice";
+
 import PostAuthor from "./PostAuthor";
 import TimeAgo from "./TimeAgo";
 import ReactionButtons from "./ReactionButtons";
 
 const SinglePostPage = ({ match }) => {
     const { postId } = match.params
-
-    const post = useSelector(state =>
-        state.posts.find(post => post.id === postId)
-    )
+    // call selectors function, if we need a second argument, should uses like this
+    const post = useSelector(state => setById(state, postId));
    
 
     if( !post ) {
