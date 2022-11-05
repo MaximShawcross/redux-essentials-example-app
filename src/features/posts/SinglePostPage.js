@@ -25,7 +25,7 @@ const SinglePostPage = ({ match }) => {
         <section>
             <article className="posts"> 
                 <h2>{post.title}</h2>
-                <PostAuthor userId = {post.userId}/>
+                <PostAuthor userId = {post.user}/>
                 <TimeAgo timestamp = {post.time} />
                 <p className="post-content "> {post.content}</p>   
                 <ReactionButtons post = {post}/>
