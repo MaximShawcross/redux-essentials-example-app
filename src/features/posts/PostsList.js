@@ -1,13 +1,9 @@
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { setAllPosts, fetchPosts  } from "./postsSlice";
 
 import { Spinner } from "../../components/Spinner";
-import PostAuthor from "./PostAuthor";
-import TimeAgo from "./TimeAgo";
-import ReactionButtons from "./ReactionButtons";
 import SinglePost from "./SinglePost";
 
 const PostsList = () => {
@@ -15,7 +11,7 @@ const PostsList = () => {
     const posts = useSelector(setAllPosts);
 
     const postStatus = useSelector(state => state.posts.status);
-    const error = useSelector(state => state.posts.error)
+    const error = useSelector(state => state.posts.error);
 
     useEffect(() => {
         if (postStatus === "idle") {

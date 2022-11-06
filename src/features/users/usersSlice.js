@@ -14,9 +14,13 @@ const usersSlice = createSlice({
     }
 })
 
+export const selectAllUsers = (state) => state.users;
+
+export const selectUserById = (state, userId) => state.users.find(user => user.id === userId)    
+
 export const fetchUsers = createAsyncThunk("fetchUsers", async () => {
     const response = await client.get('/fakeApi/users');
-    return response.data
+    return response.data;
 })
 
 export default usersSlice.reducer;
