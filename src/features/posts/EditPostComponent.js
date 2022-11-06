@@ -3,11 +3,11 @@ import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import { postUpdated } from "./postsSlice";
-import { setById } from "./postsSlice";
+import { selectPostById } from "./postsSlice";
 
 const EditPostComponent = ({ match }) => {
     const { postId } = match.params;
-    const post = useSelector(state => setById(state, postId)) ;   
+    const post = useSelector(state => selectPostById(state, postId)) ;   
 
     const [title, setTitle] = useState(post.title);
     const [content, setContent] = useState(post.content);

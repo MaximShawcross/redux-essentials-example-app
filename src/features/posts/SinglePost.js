@@ -3,18 +3,23 @@ import { Link } from "react-router-dom"
 import PostAuthor from "./PostAuthor"
 import ReactionButtons from "./ReactionButtons"
 import TimeAgo from "./TimeAgo"
+import { selectPostById } from "./postsSlice"
+import { useSelector } from "react-redux"
 
-let SinglePost = ({ post }) => {
+let SinglePost = ({ postId }) => {
+    const post = useSelector(state => selectPostById(state, postId))
+    const { id, title, time, user ,content} = post;
+
     return(
-        <article className = "post-excerpt" key = {post.id}>
-            <h3>{post.title}</h3>
+        <article className = "post-excerpt" key = {id}>
+            <h3>{title}</h3>
             <div className="">
-                <PostAuthor userId={post.user} />
-                <TimeAgo timestamp = {post.time} />
+                <PostAuthor userId={user} />
+                <TimeAgo timestamp = {time} />
             </div>
-            <p className="post-content">{post.content.substring(0, 100)}</p>
+            <p className="post-content">{content.substring(0, 100)}</p>
             <ReactionButtons post = {post}/>
-            <Link to={`/posts/${post.id}`} className = "button muted-button">
+            <Link to={`/posts/${id}`} className = "button muted-button">
                 View post            
             </Link>
         </article>

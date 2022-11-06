@@ -1,14 +1,19 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { setAllPosts, fetchPosts  } from "./postsSlice";
+import {
+    selectAllPosts,
+    fetchPosts,
+    selectPostIds,
+    selectPostById
+  } from './postsSlice'
 
 import { Spinner } from "../../components/Spinner";
 import SinglePost from "./SinglePost";
 
 const PostsList = () => {
     const dispatch = useDispatch();
-    const posts = useSelector(setAllPosts);
+    const orderedPostIds = useSelector(selectPostIds);
 
     const postStatus = useSelector(state => state.posts.status);
     const error = useSelector(state => state.posts.error);
@@ -23,13 +28,11 @@ const PostsList = () => {
         if (postStatus === 'loading') {
             return <Spinner text="Loading..." />
         } else if (postStatus === "succeeded") {
-            const orderedPosts = posts
-            .slice()
-            .sort((a, b) => b.date.localeCompare(a.date))
-    
-            return orderedPosts.map(post => (
-                <SinglePost key={post.id} post={post} />
+
+            return orderedPostIds.map(postId => (
+                <SinglePost key={postId} postId={postId} />
             ))
+
         } else if (postStatus === 'failed') {
             return <div>{error}</div>
         }
